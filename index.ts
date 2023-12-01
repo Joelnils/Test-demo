@@ -1,7 +1,6 @@
 
 
 const firstname: string = "Jonatan";
-
 const firstnames: string[] = ["Jonatan", "Eva"];
 
 //Listor
@@ -21,6 +20,7 @@ const enumColors: Color = Color.Red;
 
 //Tuple - används inte superofta
 const employee: [ number, string ] = [ 5, "hej" ];
+
 
 
 
