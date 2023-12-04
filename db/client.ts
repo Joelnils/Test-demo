@@ -1,4 +1,4 @@
-import { Blog } from "../types"
+import { Blog, PostBlogRequestBody } from "../types"
 
 const sql = require('mssql')
 const sqlConfig = {
@@ -31,3 +31,20 @@ export const GetBlogs = async () : Promise<Blog[]> => {
         // ... error checks
     }
 }
+
+export const PostBlog = async (newBlog: PostBlogRequestBody): Promise<Blog> => {
+    try {
+        // make sure that any items are correctly URL encoded in the connection string
+        await sql.connect(sqlConfig)
+        const request = new sql.Request()
+        const result = await request
+            .input('blogUrl', sql.VarChar, newBlog.url)
+            .query`INSERT INTO Blogs (Url) VALUES(@blogUrl); SELECT * FROM Blogs WHERE BlogId = SCOPE_IDENTITY()`
+        return result.recordset[0] as Blog
+    } catch (err) {
+        console.error('Det blev fel', err);
+        throw err;
+        // ... error checks
+    }
+}
+

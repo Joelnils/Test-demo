@@ -2,7 +2,7 @@ POST http://localhost:3000/blog
 Content-Type: application/json
 
 {
-    "url": "http://www.minblogg123.se"
+    "url": "http://www.hej123.se"
 }
 
 ###

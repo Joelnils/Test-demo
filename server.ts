@@ -1,6 +1,6 @@
 import express, { Request, Response, json } from 'express';
 import { PostBlogRequestBody } from './types';
-import { GetBlogs } from './db/client';
+import { GetBlogs, PostBlog } from './db/client';
 
 const app = express()
 const port = 3000
@@ -20,14 +20,14 @@ app.get('/blog', async (req: Request, res: Response) => {
 }
 
 */
-// app.post('/blog', async (req: Request, res: Response) => {
-//   const body = req.body as PostBlogRequestBody;
+app.post('/blog', async (req: Request, res: Response) => {
+  const body = req.body as PostBlogRequestBody;
 
-//   //Lägg in i databasen
-//   await PostBlog()
+  //Lägg in i databasen
+  const postBlogResult = await PostBlog(body);
 
-//   console.log('test', req.body);
-// })
+  res.json(postBlogResult);
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
