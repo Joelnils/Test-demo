@@ -1,5 +1,5 @@
 import { getData } from './getData';
-import { response } from './responses/getDataResponse';
+import { response } from './getDataResponse';
 
 describe('getData tests', () => {
     
